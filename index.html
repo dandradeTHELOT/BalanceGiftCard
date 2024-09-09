@@ -47,7 +47,7 @@
         <img id="logo" src="https://cdn.theatertoolkit.com/cdn/wwwroot/themes/custom/thelotent/images/logo.png?v=20240904.1" alt="Logo">
         
         <p id="loadingMessage">We are loading the balance...</p>
-        <button id="continueButton" onclick="showGoogleSheet()">Ir a Google Sheets</button>
+        <button id="continueButton" onclick="showGoogleSheet()">Check Balance</button>
     </div>
 
     <iframe id="googleSheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-oLseZTmfJWBHLojsljoeTWUFvnFEcTB_p1KwwwRb7R-Sg1St4QiziDlwAUnKlq2oEcdMmB_6q25Z/pubhtml?widget=true&amp;headers=false" width="100%" height="600" frameborder="0" style="display:none;"></iframe>
@@ -56,7 +56,7 @@
         setTimeout(function() {
             document.getElementById("loadingMessage").style.display = "none";
             document.getElementById("continueButton").style.display = "block";
-        }, 15000); // 15 segundos
+        }, 13000); // 13 segundos
 
         // Función para mostrar el iframe de Google Sheets
         function showGoogleSheet() {
