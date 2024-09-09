@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cargando Información</title>
+    <title>Giftcard Balance</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,7 +46,7 @@
         <!-- Logo de tu empresa -->
         <img id="logo" src="https://cdn.theatertoolkit.com/cdn/wwwroot/themes/custom/thelotent/images/logo.png?v=20240904.1" alt="Logo">
         
-        <p id="loadingMessage">Estamos cargando tu información...</p>
+        <p id="loadingMessage">We are loading the balance...</p>
         <button id="continueButton" onclick="showGoogleSheet()">Ir a Google Sheets</button>
     </div>
 
@@ -56,7 +56,7 @@
         setTimeout(function() {
             document.getElementById("loadingMessage").style.display = "none";
             document.getElementById("continueButton").style.display = "block";
-        }, 10000); // 10 segundos
+        }, 15000); // 10 segundos
 
         // Función para mostrar el iframe de Google Sheets
         function showGoogleSheet() {
