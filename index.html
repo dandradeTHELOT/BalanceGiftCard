@@ -7,37 +7,46 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #003a7e;
+            color: #ffffff;
             margin: 0;
             padding: 0;
             text-align: center;
         }
         .container {
-            margin-top: 20%;
+            margin-top: 15%;
         }
         #loadingMessage {
-            font-size: 24px;
-            color: #333;
+            font-size: 26px;
+            color: #ffffff;
         }
         #continueButton {
             display: none;
             margin-top: 20px;
-            padding: 10px 20px;
+            padding: 15px 30px;
             font-size: 18px;
-            background-color: #003a7e;
-            color: #fff;
+            background-color: #005bb5;
+            color: #ffffff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         #continueButton:hover {
-            background-color: #005bb5;
+            background-color: #007bff;
+        }
+        #logo {
+            width: 150px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <p id="loadingMessage">Estamos cargando tu información...</p>
+        <!-- Logo de tu empresa -->
+        <img id="logo" src="https://cdn.theatertoolkit.com/cdn/wwwroot/themes/custom/thelotent/images/logo.png?v=20240904.1" alt="Logo">
+        
+        <p id="loadingMessage">We are loading the balance...</p>
         <button id="continueButton" onclick="showGoogleSheet()">Ir a Google Sheets</button>
     </div>
 
