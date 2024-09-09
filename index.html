@@ -47,10 +47,11 @@
         <img id="logo" src="https://cdn.theatertoolkit.com/cdn/wwwroot/themes/custom/thelotent/images/logo.png?v=20240904.1" alt="Logo">
         
         <p id="loadingMessage">We are loading the balance...</p>
-        <button id="continueButton" onclick="showGoogleSheet()">Ir a Google Sheets</button>
+        <button id="continueButton" onclick="showAirtable()">Ir a Airtable</button>
     </div>
 
-    <iframe id="googleSheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vToPfWcPH6JpA8Z6Wk12LO7Vf6mIoN6PcqxlWqDVR33NaNkp59YgsZVDpxv0PfJD6-vAMyYBl2Qaopt/pubhtml?widget=true&amp;headers=false" width="100%" height="600" frameborder="0" style="display:none;"></iframe>
+    <!-- Reemplazado iframe de Google Sheets por Airtable -->
+    <iframe id="airtableFrame" src="https://airtable.com/invite/l?inviteId=invaHgCxgdHZKTmew&inviteToken=cd3cc2a0a9176deaa89909a2397578a5445fde27e4154ae447bcb519fae50380" width="100%" height="600" frameborder="0" style="display:none;"></iframe>
 
     <script>
         // Después de 10 segundos mostrar el botón y ocultar el mensaje de carga
@@ -59,10 +60,10 @@
             document.getElementById("continueButton").style.display = "block";
         }, 10000); // 10 segundos
 
-        // Función para mostrar el iframe de Google Sheets
-        function showGoogleSheet() {
+        // Función para mostrar el iframe de Airtable
+        function showAirtable() {
             document.getElementById("continueButton").style.display = "none";
-            document.getElementById("googleSheetFrame").style.display = "block";
+            document.getElementById("airtableFrame").style.display = "block";
         }
     </script>
 </body>
