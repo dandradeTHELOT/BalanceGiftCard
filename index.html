@@ -3,9 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incrustar Google Sheets</title>
+    <title>Cargando Información</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            margin-top: 20%;
+        }
+        #loadingMessage {
+            font-size: 24px;
+            color: #333;
+        }
+        #continueButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #003a7e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #continueButton:hover {
+            background-color: #005bb5;
+        }
+    </style>
 </head>
 <body>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vToPfWcPH6JpA8Z6Wk12LO7Vf6mIoN6PcqxlWqDVR33NaNkp59YgsZVDpxv0PfJD6-vAMyYBl2Qaopt/pubhtml?widget=true&amp;headers=false" width="100%" height="600" frameborder="0"></iframe>
+    <div class="container">
+        <p id="loadingMessage">Estamos cargando tu información...</p>
+        <button id="continueButton" onclick="showGoogleSheet()">Ir a Google Sheets</button>
+    </div>
+
+    <iframe id="googleSheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vToPfWcPH6JpA8Z6Wk12LO7Vf6mIoN6PcqxlWqDVR33NaNkp59YgsZVDpxv0PfJD6-vAMyYBl2Qaopt/pubhtml?widget=true&amp;headers=false" width="100%" height="600" frameborder="0" style="display:none;"></iframe>
+
+    <script>
+        // Después de 10 segundos mostrar el botón y ocultar el mensaje de carga
+        setTimeout(function() {
+            document.getElementById("loadingMessage").style.display = "none";
+            document.getElementById("continueButton").style.display = "block";
+        }, 10000); // 10 segundos
+
+        // Función para mostrar el iframe de Google Sheets
+        function showGoogleSheet() {
+            document.getElementById("continueButton").style.display = "none";
+            document.getElementById("googleSheetFrame").style.display = "block";
+        }
+    </script>
 </body>
 </html>
