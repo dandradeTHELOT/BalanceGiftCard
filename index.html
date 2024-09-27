@@ -47,28 +47,26 @@
 </head>
 <body>
     <div class="container">
-        <!-- Logo de tu empresa -->
         <img id="logo" src="https://cdn.theatertoolkit.com/cdn/wwwroot/themes/custom/thelotent/images/logo.png?v=20240904.1" alt="Logo">
         
         <p id="loadingMessage">We are loading the balance...</p>
         <button id="continueButton" onclick="fetchBalance()">Check Balance</button>
-        <button id="redeemButton" onclick="redeemBalance()" style="display:none;">Redeem Balance</button>
+        <button id="redeemButton" onclick="redeemBalance()">Redeem Balance</button>
     </div>
 
     <div id="balanceDisplay" style="display:none;"></div>
 
     <script>
-        // Después de 10 segundos mostrar el botón y ocultar el mensaje de carga
+        // Mostrar el botón de continuar después de 13 segundos
         setTimeout(function() {
             document.getElementById("loadingMessage").style.display = "none";
             document.getElementById("continueButton").style.display = "block";
-        }, 13000); // 13 segundos
+        }, 13000);
 
         // Función para obtener los datos del Google Sheets
         function fetchBalance() {
             document.getElementById("continueButton").style.display = "none";
 
-            // Reemplaza 'YOUR_WEB_APP_URL' con la URL de tu Google Apps Script
             fetch('https://script.google.com/macros/s/AKfycbxVcGcMblKUQgiD-M1GeS33esVM9P7O7VLD77M9YCh4RbiJoBdayx860kK5YU3CFSnh/exec')
                 .then(response => response.json())
                 .then(data => {
@@ -89,7 +87,6 @@
 
         // Función para redirigir a otra URL cuando se haga clic en "Redeem Balance"
         function redeemBalance() {
-            // Reemplaza 'YOUR_REDEEM_URL' con la URL del nuevo Typeform o la URL que desees
             window.location.href = 'https://qkstzdro6ry.typeform.com/to/aoKyCpn7';
         }
     </script>
