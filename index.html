@@ -20,8 +20,8 @@
             font-size: 26px;
             color: #ffffff;
         }
-        #continueButton {
-            display: none;
+        #redeemButton {
+            display: none; /* Ocultar inicialmente */
             margin-top: 20px;
             padding: 15px 30px;
             font-size: 18px;
@@ -32,7 +32,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        #continueButton:hover {
+        #redeemButton:hover {
             background-color: #007bff;
         }
         #logo {
@@ -51,6 +51,10 @@
     </div>
 
     <iframe id="googleSheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-oLseZTmfJWBHLojsljoeTWUFvnFEcTB_p1KwwwRb7R-Sg1St4QiziDlwAUnKlq2oEcdMmB_6q25Z/pubhtml?widget=true&amp;headers=false" width="100%" height="600" frameborder="0" style="display:none;"></iframe>
+    
+    <!-- Botón para redimir el balance -->
+    <button id="redeemButton" onclick="redeemBalance()">Redeem Balance</button>
+
     <script>
         // Después de 10 segundos mostrar el botón y ocultar el mensaje de carga
         setTimeout(function() {
@@ -58,10 +62,16 @@
             document.getElementById("continueButton").style.display = "block";
         }, 13000); // 13 segundos
 
-        // Función para mostrar el iframe de Google Sheets
+        // Función para mostrar el iframe de Google Sheets y el botón de redimir
         function showGoogleSheet() {
             document.getElementById("continueButton").style.display = "none";
             document.getElementById("googleSheetFrame").style.display = "block";
+            document.getElementById("redeemButton").style.display = "block"; // Mostrar el botón de redimir
+        }
+
+        // Función para redirigir al Typeform de redención
+        function redeemBalance() {
+            window.location.href = "https://qkstzdro6ry.typeform.com/to/aoKyCpn7"; // Cambia esto por la URL de tu Typeform
         }
     </script>
 </body>
