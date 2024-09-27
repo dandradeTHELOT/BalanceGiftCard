@@ -20,8 +20,8 @@
             font-size: 26px;
             color: #ffffff;
         }
-        #redeemButton {
-            display: none; /* Ocultar inicialmente */
+        #continueButton {
+            display: none;
             margin-top: 20px;
             padding: 15px 30px;
             font-size: 18px;
@@ -32,28 +32,29 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        #redeemButton:hover {
+        #continueButton:hover {
             background-color: #007bff;
         }
         #logo {
             width: 150px;
             margin-bottom: 20px;
         }
+        #balanceDisplay {
+            margin-top: 20px;
+            font-size: 22px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Logo de tu empresa
+        <!-- Logo de tu empresa 
         <img id="logo" src="https://cdn.theatertoolkit.com/cdn/wwwroot/themes/custom/thelotent/images/logo.png?v=20240904.1" alt="Logo"> -->
         
         <p id="loadingMessage">We are loading the balance...</p>
-        <button id="continueButton" onclick="showGoogleSheet()">Check Balance</button>
+        <button id="continueButton" onclick="fetchBalance()">Check Balance</button>
     </div>
 
-    <iframe id="googleSheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-oLseZTmfJWBHLojsljoeTWUFvnFEcTB_p1KwwwRb7R-Sg1St4QiziDlwAUnKlq2oEcdMmB_6q25Z/pubhtml?widget=true&amp;headers=false" width="100%" height="600" frameborder="0" style="display:none;"></iframe>
-    
-    <!-- Botón para redimir el balance -->
-    <button id="redeemButton" onclick="redeemBalance()">Redeem Balance</button>
+    <div id="balanceDisplay" style="display:none;"></div>
 
     <script>
         // Después de 10 segundos mostrar el botón y ocultar el mensaje de carga
@@ -62,16 +63,24 @@
             document.getElementById("continueButton").style.display = "block";
         }, 13000); // 13 segundos
 
-        // Función para mostrar el iframe de Google Sheets y el botón de redimir
-        function showGoogleSheet() {
+        // Función para obtener los datos del Google Sheets
+        function fetchBalance() {
             document.getElementById("continueButton").style.display = "none";
-            document.getElementById("googleSheetFrame").style.display = "block";
-            document.getElementById("redeemButton").style.display = "block"; // Mostrar el botón de redimir
-        }
 
-        // Función para redirigir al Typeform de redención
-        function redeemBalance() {
-            window.location.href = "https://qkstzdro6ry.typeform.com/to/aoKyCpn7"; // Cambia esto por la URL de tu Typeform
+            // Reemplaza 'YOUR_WEB_APP_URL' con la URL de tu Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbxVcGcMblKUQgiD-M1GeS33esVM9P7O7VLD77M9YCh4RbiJoBdayx860kK5YU3CFSnh/exec')
+                .then(response => response.json())
+                .then(data => {
+                    const display = `
+                        <p>Card Number: ${data.A1}</p>
+                        <p>Balance: ${data.B1}</p>
+                        <p>Card Number (2): ${data.A2}</p>
+                        <p>Balance (2): ${data.B2}</p>
+                    `;
+                    document.getElementById("balanceDisplay").innerHTML = display;
+                    document.getElementById("balanceDisplay").style.display = "block";
+                })
+                .catch(error => console.error('Error fetching balance:', error));
         }
     </script>
 </body>
