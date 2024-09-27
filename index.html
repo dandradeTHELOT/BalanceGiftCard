@@ -16,9 +16,15 @@
         .container {
             margin-top: 15%;
         }
-        #loadingMessage {
+        #loadingMessage, #resultMessage {
             font-size: 26px;
             color: #ffffff;
+        }
+        #loadingMessage {
+            display: none;
+        }
+        #resultMessage {
+            display: none;
         }
         #continueButton {
             display: none;
@@ -43,38 +49,64 @@
 </head>
 <body>
     <div class="container">
-        <!-- Logo de tu empresa -->
-        <img id="logo" src="https://cdn.theatertoolkit.com/cdn/wwwroot/themes/custom/thelotent/images/logo.png?v=20240904.1" alt="Logo">
+        <!-- Typeform embebido -->
+        <div id="typeformEmbed">
+            <div data-tf-live="01J8TQ1ENCVPE37Q71YRZB67J8"></div>
+            <script src="//embed.typeform.com/next/embed.js"></script>
+        </div>
+
+        <p id="loadingMessage">We are loading your balance...</p>
+        <p id="resultMessage"></p>
+
+        <!-- Botón para redirigir al siguiente Typeform -->
+        <button id="continueButton" onclick="showSecondTypeform()">Continue</button>
         
-         <!-- Typeform embebido -->
-        <div data-tf-live="01J8TQ1ENCVPE37Q71YRZB67J8"></div>
-        <script src="//embed.typeform.com/next/embed.js"></script>
-        
-        <p id="loadingMessage" style="display:none;">We are loading the balance...</p>
-        <button id="continueButton" style="display:none;" onclick="showGoogleSheet()">Check Balance</button>
+        <!-- Otro Typeform embebido que estará oculto hasta que el balance sea mostrado -->
+        <div id="secondTypeformEmbed" style="display:none;">
+            <div data-tf-live="01J8TQCKN33QTGA8AR3V3DDJNC"></div>
+            <script src="//embed.typeform.com/next/embed.js"></script>
+        </div>
     </div>
 
-    <iframe id="googleSheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-oLseZTmfJWBHLojsljoeTWUFvnFEcTB_p1KwwwRb7R-Sg1St4QiziDlwAUnKlq2oEcdMmB_6q25Z/pubhtml?widget=true&amp;headers=false" width="100%" height="600" frameborder="0" style="display:none;"></iframe>
     <script>
-        // Función para mostrar el iframe de Google Sheets
-        function showGoogleSheet() {
-            document.getElementById("continueButton").style.display = "none";
-            document.getElementById("googleSheetFrame").style.display = "block";
+        // Ocultar el formulario de Typeform inicial y mostrar el mensaje de carga
+        function hideTypeformAndShowLoading() {
+            document.getElementById("typeformEmbed").style.display = "none";
+            document.getElementById("loadingMessage").style.display = "block";
         }
 
-        // Escucha cuando se complete el formulario Typeform
+        // Mostrar el saldo y luego el botón para continuar al siguiente Typeform
+        function showBalanceAndContinueButton(balance) {
+            document.getElementById("loadingMessage").style.display = "none";
+            document.getElementById("resultMessage").innerText = `Your balance is: $${balance / 100}`;
+            document.getElementById("resultMessage").style.display = "block";
+            document.getElementById("continueButton").style.display = "block";
+        }
+
+        // Mostrar el segundo Typeform embebido
+        function showSecondTypeform() {
+            document.getElementById("resultMessage").style.display = "none";
+            document.getElementById("continueButton").style.display = "none";
+            document.getElementById("secondTypeformEmbed").style.display = "block";
+        }
+
+        // Simular la lógica de Make para recibir el balance
+        function receiveBalanceFromMake() {
+            // Simulación de la respuesta de Make con el balance
+            setTimeout(function() {
+                hideTypeformAndShowLoading();
+
+                // Simulación de la respuesta de la API, puedes conectar esto a tu webhook en Make
+                const balance = 5000; // En centavos, es decir $50.00
+                showBalanceAndContinueButton(balance);
+            }, 3000); // Simular la espera de Make
+        }
+
+        // Escucha el evento de envío del formulario Typeform
         window.addEventListener('message', function(event) {
             if (event.data === 'formSubmit') {
-                document.getElementById("typeformEmbed").style.display = "none";
-                document.getElementById("loadingMessage").style.display = "block";
-                
-                // Aquí puedes manejar la lógica para enviar los datos a la API
-
-                // Simula tiempo de espera para mostrar el botón después de 13 segundos
-                setTimeout(function() {
-                    document.getElementById("loadingMessage").style.display = "none";
-                    document.getElementById("continueButton").style.display = "block";
-                }, 13000);
+                // Aquí Make consultaría tu API y devolvería el saldo
+                receiveBalanceFromMake();
             }
         }, false);
     </script>
