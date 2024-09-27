@@ -20,7 +20,7 @@
             font-size: 26px;
             color: #ffffff;
         }
-        #continueButton {
+        #continueButton, #redeemButton {
             display: none;
             margin-top: 20px;
             padding: 15px 30px;
@@ -32,7 +32,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        #continueButton:hover {
+        #continueButton:hover, #redeemButton:hover {
             background-color: #007bff;
         }
         #logo {
@@ -47,11 +47,12 @@
 </head>
 <body>
     <div class="container">
-        <!-- Logo de tu empresa 
-        <img id="logo" src="https://cdn.theatertoolkit.com/cdn/wwwroot/themes/custom/thelotent/images/logo.png?v=20240904.1" alt="Logo"> -->
+        <!-- Logo de tu empresa -->
+        <img id="logo" src="https://cdn.theatertoolkit.com/cdn/wwwroot/themes/custom/thelotent/images/logo.png?v=20240904.1" alt="Logo">
         
         <p id="loadingMessage">We are loading the balance...</p>
         <button id="continueButton" onclick="fetchBalance()">Check Balance</button>
+        <button id="redeemButton" onclick="redeemBalance()" style="display:none;">Redeem Balance</button>
     </div>
 
     <div id="balanceDisplay" style="display:none;"></div>
@@ -79,8 +80,17 @@
                     `;
                     document.getElementById("balanceDisplay").innerHTML = display;
                     document.getElementById("balanceDisplay").style.display = "block";
+
+                    // Mostrar el botón "Redeem Balance"
+                    document.getElementById("redeemButton").style.display = "block";
                 })
                 .catch(error => console.error('Error fetching balance:', error));
+        }
+
+        // Función para redirigir a otra URL cuando se haga clic en "Redeem Balance"
+        function redeemBalance() {
+            // Reemplaza 'YOUR_REDEEM_URL' con la URL del nuevo Typeform o la URL que desees
+            window.location.href = 'https://qkstzdro6ry.typeform.com/to/aoKyCpn7';
         }
     </script>
 </body>
