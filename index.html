@@ -20,9 +20,11 @@
             font-size: 26px;
             color: #ffffff;
         }
-        #continueButton, #redeemButton, #refreshButton {
-            display: none;
+        .button-container {
             margin-top: 20px;
+        }
+        .button-container button {
+            display: none;
             padding: 15px 30px;
             font-size: 18px;
             background-color: #005bb5;
@@ -31,8 +33,9 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin-right: 10px; /* Espacio entre botones */
         }
-        #continueButton:hover, #redeemButton:hover, #refreshButton:hover {
+        .button-container button:hover {
             background-color: #007bff;
         }
         #logo {
@@ -50,9 +53,13 @@
         <img id="logo" src="https://cdn.theatertoolkit.com/cdn/wwwroot/themes/custom/thelotent/images/logo.png?v=20240904.1" alt="Logo">
         
         <p id="loadingMessage">We are loading the balance...</p>
-        <button id="continueButton" onclick="fetchBalance()">Check Balance</button>
-        <button id="redeemButton" onclick="redeemBalance()">Redeem Balance</button>
-        <button id="refreshButton" onclick="refreshPage()">Refresh</button>
+        
+        <!-- Contenedor para los botones -->
+        <div class="button-container">
+            <button id="continueButton" onclick="fetchBalance()">Check Balance</button>
+            <button id="redeemButton" onclick="redeemBalance()">Redeem Balance</button>
+            <button id="refreshButton" onclick="refreshPage()">Refresh</button>
+        </div>
     </div>
 
     <div id="balanceDisplay" style="display:none;"></div>
@@ -92,7 +99,7 @@
 
         // Función para refrescar la página
         function refreshPage() {
-            location.reload();
+            window.location.href = 'https://qkstzdro6ry.typeform.com/LJRefund';
         }
     </script>
 </body>
