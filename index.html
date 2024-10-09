@@ -78,9 +78,9 @@
                     document.getElementById("balanceDisplay").innerHTML = display;
                     document.getElementById("balanceDisplay").style.display = "block";
 
-                    // Mostrar el botón "Redeem Balance" y "Refresh"
-                    document.getElementById("redeemButton").style.display = "block";
-                    document.getElementById("refreshButton").style.display = "block";
+                    // Mostrar los botones "Redeem Balance" y "Refresh"
+                    document.getElementById("redeemButton").style.display = "inline-block";
+                    document.getElementById("refreshButton").style.display = "inline-block";
                 })
                 .catch(error => console.error('Error fetching balance:', error));
         }
